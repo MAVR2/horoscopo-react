@@ -1,9 +1,24 @@
+/* Nuevo CSS con Estilo y Animaciones */
+
+/* VARIABLES DE COLOR */
+:root {
+    --bg-color: #2c3e50;         /* Azul Oscuro para el fondo */
+    --panel-color: #34495e;      /* Gris Azulado para los paneles */
+    --text-light: #ecf0f1;       /* Texto claro */
+    --accent-color: #1abc9c;     /* Verde Turquesa (Botón principal) */
+    --secondary-color: #f39c12;  /* Naranja (Acento de resultados) */
+    --shadow-dark: rgba(0, 0, 0, 0.4);
+    --shadow-light: rgba(255, 255, 255, 0.05);
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #303a44;
+    /* Usando variables y fuente moderna */
+    font-family: 'Inter', 'Segoe UI', sans-serif; 
+    background: var(--bg-color);
     margin: 0;
-    padding: 20px;
-    color: #333;
+    padding: 30px 20px; /* Más padding en el body */
+    color: var(--text-light); /* Color de texto base claro */
+    transition: background-color 0.3s ease;
 }
 
 .app {
@@ -13,70 +28,112 @@ body {
 
 h1 {
     text-align: center;
-    color: #ffffff;
+    color: var(--accent-color);
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    letter-spacing: 1px;
+    /* Efecto de texto sutil */
+    text-shadow: 0 0 10px rgba(26, 188, 156, 0.5); 
 }
 
+/* LAYOUT y PANELES */
 .layout {
     display: flex;
-    gap: 20px;
+    gap: 30px; /* Más espacio entre elementos */
     flex-wrap: wrap;
+    align-items: flex-start; /* Alinea los paneles arriba */
 }
 
 .panel {
     flex: 1;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-width: 350px; /* Asegura un ancho mínimo para que no se compriman */
+    background: var(--panel-color);
+    padding: 30px; /* Más padding */
+    border-radius: 15px; /* Bordes más suaves */
+    color: var(--text-light); /* Texto de panel claro */
+    
+    /* Sombra interna para un efecto de "hundido" (Neumorfismo Dark) */
+    box-shadow: inset 5px 5px 10px var(--shadow-dark),
+                inset -5px -5px 10px var(--shadow-light),
+                0 10px 20px var(--shadow-dark); /* Sombra exterior para profundidad */
+
+    transition: all 0.3s ease-in-out; /* Transición para todo */
 }
 
 .panel:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    /* Animación de "levantamiento" al pasar el ratón */
+    transform: translateY(-5px); 
+    box-shadow: 0 15px 30px var(--shadow-dark),
+                0 0 15px var(--accent-color); /* Resplandor sutil del acento */
 }
 
+/* FORMULARIO */
 .form label {
     display: block;
-    margin-top: 12px;
-    font-weight: 600;
-    color: #34495e;
+    margin-top: 15px;
+    font-weight: 400;
+    color: var(--text-light);
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
 }
 
 .form input {
     width: 100%;
-    padding: 10px;
-    margin-top: 6px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+    padding: 12px 15px; /* Más padding interno */
+    margin-top: 8px;
+    border-radius: 8px; /* Bordes más redondeados */
+    background: var(--bg-color); /* Fondo del input más oscuro */
+    border: 1px solid var(--bg-color);
+    color: var(--text-light);
     box-sizing: border-box;
-    transition: border-color 0.2s ease;
+    
+    /* Sombra para efecto de "hundido" en el input */
+    box-shadow: inset 3px 3px 5px var(--shadow-dark),
+                inset -3px -3px 5px var(--shadow-light);
+
+    transition: all 0.3s ease;
 }
 
 .form input:focus {
-    border-color: #3498db;
+    border-color: var(--accent-color); /* Borde de enfoque brillante */
+    box-shadow: inset 0 0 5px var(--accent-color), 
+                0 0 8px rgba(26, 188, 156, 0.7); /* Resplandor al enfocar */
     outline: none;
 }
 
+/* BOTÓN */
 .form button {
-    margin-top: 16px;
-    padding: 10px 16px;
-    background: #3498db;
-    color: #fff;
+    margin-top: 25px;
+    padding: 12px 25px;
+    background: var(--accent-color);
+    color: var(--bg-color);
+    font-weight: 700;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    
+    transition: all 0.2s ease-in-out;
 }
 
 .form button:hover {
-    background: #2980b9;
-    transform: translateY(-2px);
+    background: #16a085;
+    transform: translateY(-3px) scale(1.02); /* Sutil crecimiento y elevación */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
 }
 
+.form button:active {
+    transform: translateY(0); /* Efecto de "clic" */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* RESULTADOS */
 .resultado h2 {
-    color: #e67e22;
-    margin-bottom: 12px;
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-out; /* Animación de aparición */
 }
 
 .resultado .img-wrap {
@@ -84,18 +141,55 @@ h1 {
 }
 
 .resultado img {
-    max-width: 140px;
+    max-width: 150px;
+    height: 150px;
+    object-fit: cover;
     border-radius: 50%;
-    border: 2px solid #e67e22;
-    margin-bottom: 12px;
+    border: 4px solid var(--accent-color);
+    margin-bottom: 20px;
+    /* Animación de rotación sutil */
+    animation: pulseBorder 2s infinite alternate; 
+    box-shadow: 0 0 0 10px rgba(243, 156, 18, 0.1); /* Sombra de expansión */
 }
 
 .resultado p {
-    line-height: 1.5;
+    line-height: 1.6;
+    color: var(--text-light);
+    border-left: 3px solid var(--accent-color);
+    padding-left: 15px;
+    margin-left: 5px;
 }
 
 .placeholder,
 .error {
-    color: #999;
+    color: #95a5a6;
     font-style: italic;
+    text-align: center;
+    padding: 20px;
+    border: 1px dashed #95a5a6;
+    border-radius: 8px;
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* KEYFRAMES para las animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseBorder {
+    from { border-color: var(--accent-color); box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.4); }
+    to { border-color: #f1c40f; box-shadow: 0 0 0 15px rgba(243, 156, 18, 0); }
+}
+
+/* MEDIA QUERIES para responsividad */
+@media (max-width: 768px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .panel {
+        min-width: unset;
+    }
 }
